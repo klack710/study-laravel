@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: study-laravel_nginx
+    build:
+      context: ./nginx
+    volumes:
+      - ./data:/var/www
+    ports:
+      - "8000:80"
+    links:
+      - php-fpm
+
+  php-fpm:
+    container_name: study-laravel_php-fpm
+    build:
+      context: ./web
+    volumes:
+      - ./web:/var/www/:cached
+    links:
+      - mysql
+
+  mysql:
+    container_name: study-laravel_mysql
+    restart: always
+    image: mysql:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
