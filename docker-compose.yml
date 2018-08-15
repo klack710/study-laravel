@@ -23,8 +23,7 @@ services:
 
   mysql:
     container_name: study-laravel_mysql
-    restart: always
-    image: mysql:latest
+    image: mysql:8.0.12
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
