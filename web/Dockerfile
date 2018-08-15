@@ -13,10 +13,16 @@ RUN apt-get install -y \
     unzip \
     vim \
     iputils-ping \
-    net-tools
+    net-tools \
+    openssl \
+    libpng-dev
 
 RUN curl -sS https://getcomposer.org/installer | php \
  && mv composer.phar /usr/local/bin/composer
+
+RUN apt-get install -y gnupg \
+ && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+ && apt-get install -y nodejs
 
 COPY ./ /var/www
 
