@@ -2,5 +2,10 @@
 @section('title', 'TOPページ')
 
 @section('content')
-<p>Hello!</p>
+<div>
+    <h1>TOPページ</h1>
+</div>
+<div>
+    <p>Hello!</p>
+</div>
 @endsection
