@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['namespace' => 'User'], function () {
-    Route::get('/', 'TopController@index');
+Route::group(['namespace' => 'User' , 'as' => 'user.'], function () {
+    Route::resource('/', 'TopController');
+    Route::resource('/request', 'RequestController');
+    Route::resource('/request_receive', 'RequestReceiveController');
 });
