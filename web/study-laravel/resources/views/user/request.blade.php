@@ -8,7 +8,7 @@
 <div>
     <p>Hello!</p>
     <form method="POST" action="{{ route('user.request.store') }}">
-        {{-- 以下でトークンを追加しないと、Laravelの機能を使っていないと判断されて、POSTでエラーが出る --}}
+        {{-- 以下でトークンを追加しないと、Laravelの機能を使っていないと判断されて、POSTで419エラーが出る --}}
         {{-- 参考.CSRF保護 https://readouble.com/laravel/5.5/ja/routing.html --}}
         {{ csrf_field() }}
         <input type="text" name="message">
@@ -17,7 +17,7 @@
     <p>ここに入力結果が出ます:@isset($message){{ $message }}@endif</p>
 
     <form method="POST" action="{{ route('user.request_receive.store') }}">
-        {{-- 以下でトークンを追加しないと、Laravelの機能を使っていないと判断されて、POSTでエラーが出る --}}
+        {{-- 以下でトークンを追加しないと、Laravelの機能を使っていないと判断されて、POSTで419エラーが出る --}}
         {{-- 参考.CSRF保護 https://readouble.com/laravel/5.5/ja/routing.html --}}
         {{ csrf_field() }}
         <input type="text" name="message">
