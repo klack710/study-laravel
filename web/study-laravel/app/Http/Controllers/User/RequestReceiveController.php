@@ -34,6 +34,7 @@ class RequestReceiveController extends Controller
         $method = $request->method();
         $is_post_method = $request->isMethod('post');
         $cookie = $request->cookie('cookie_name');
+        $encrypted_cookie = $request->cookie('encrypted_cookie_name');
 
         $request->flashOnly(['message']);
 
@@ -58,7 +59,8 @@ class RequestReceiveController extends Controller
                 'is_to_request',
                 'method',
                 'is_post_method',
-                'cookie'
+                'cookie',
+                'encrypted_cookie'
             ));
     }
 
@@ -72,6 +74,7 @@ class RequestReceiveController extends Controller
             $isValid = $request->file('upfile')->isValid();
             $path = $request->upfile->path();
             $store = $request->upfile->store('images', 'public');
+            $storeAs = $request->upfile->storeAs('images', 'upfile.jpeg', 'public');
             $extension = $request->upfile->extension();
         } else {
             $isValid = null;
@@ -91,6 +94,7 @@ class RequestReceiveController extends Controller
         $method = $request->method();
         $is_post_method = $request->isMethod('post');
         $cookie = $request->cookie('cookie_name');
+        $encrypted_cookie = $request->cookie('encrypted_cookie_name');
 
         $request->flashOnly(['message']);
 
@@ -104,6 +108,7 @@ class RequestReceiveController extends Controller
                 'extension',
                 'path',
                 'store',
+                'storeAs',
                 'message',
                 'message_has',
                 'message_filled',
@@ -115,8 +120,10 @@ class RequestReceiveController extends Controller
                 'is_to_request',
                 'method',
                 'is_post_method',
-                'cookie'
+                'cookie',
+                'encrypted_cookie'
             ))
-            ->cookie('cookie_name', $request->input('for_cookie'), 10);
+            ->cookie('cookie_name', $request->input('for_cookie'), 10)
+            ->cookie('encrypted_cookie_name', $request->input('encrypted_cookie'), 10);
     }
 }

@@ -5,6 +5,11 @@
 <div>
     <h1>リクエストを受け取ったページ</h1>
 </div>
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 <div>
     <p>以下のパターンを試してみよう！</p>
     <ol>
@@ -21,9 +26,11 @@
         {{ csrf_field() }}
         <p>message: <input type="text" name="message" value="{{ old('message') }}"></p>
         <p>cookie: <input type="text" name="for_cookie"></p>
+        <p>encrypt_cookie: <input type="text" name="encrypted_cookie"></p>
         <p><input type="file" name="upfile"/></p>
         <button>ここに送信</button>
     </form>
+    <p><a href="{{ route('user.dl_jpeg') }}">アップロードしたファイルをダウンロード</a></p>
 
     <table>
         <tr>
@@ -51,22 +58,26 @@
             <th>{{ $hasfile }}</th>
         </tr>
         @if($hasfile)
-        <tr>
-            <th>$request->file('photo')->isValid(): </th>
-            <th>{{ $isValid }}</th>
-        </tr>
-        <tr>
-            <th>$request->upfile->path(): </th>
-            <th>{{ $path }}</th>
-        </tr>
-        <tr>
-            <th>$request->upfile->store('images', 'public'): </th>
-            <th>{{ $store }}</th>
-        </tr>
-        <tr>
-            <th>$request->upfile->extension(): </th>
-            <th>{{ $extension }}</th>
-        </tr>
+            <tr>
+                <th>$request->file('photo')->isValid(): </th>
+                <th>{{ $isValid }}</th>
+            </tr>
+            <tr>
+                <th>$request->upfile->path(): </th>
+                <th>{{ $path }}</th>
+            </tr>
+            <tr>
+                <th>$request->upfile->store('images', 'public'): </th>
+                <th>{{ $store }}</th>
+            </tr>
+            <tr>
+                <th>$request->upfile->storeAs('images', 'upfile.jpeg', 'public'): </th>
+                <th>{{ $storeAs }}</th>
+            </tr>
+            <tr>
+                <th>$request->upfile->extension(): </th>
+                <th>{{ $extension }}</th>
+            </tr>
         @endif
         <tr>
             <th>$request->message:</th>
@@ -115,6 +126,10 @@
         <tr>
             <th>$request->cookie('cookie_name'):</th>
             <th>{{ $cookie }}</th>
+        </tr>
+        <tr>
+            <th>$request->cookie('encrypted_cookie_name'):</th>
+            <th>{{ $encrypted_cookie }}</th>
         </tr>
         </table>
 
