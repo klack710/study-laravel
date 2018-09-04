@@ -6,6 +6,9 @@
     <h1>TOPページ</h1>
 </div>
 <div>
-    <p>Hello!</p>
+    <p>以下に勉強のために使ったページのリンクをかきます</p>
+    <ul>
+        <li><a href="{{ route('user.request.index') }}">リクエスト</a></li>
+    </ul>
 </div>
 @endsection
