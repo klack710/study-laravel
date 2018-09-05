@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,3 +71,11 @@ Route::group(['namespace' => 'User' , 'as' => 'user.'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/cache', function () {
+    return Cache::get('key');
+});
+
+Route::get('/cache_helper', function () {
+    return cache('key');
+});
