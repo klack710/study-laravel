@@ -14,6 +14,7 @@ Route::group(['namespace' => 'User' , 'as' => 'user.'], function () {
     Route::resource('/', 'TopController');
     Route::resource('/request', 'RequestController');
     Route::resource('/request_receive', 'RequestReceiveController');
+    Route::resource('/user', 'UserController');
 
     Route::view('/response', 'user.response')->name('response.index');
 
@@ -64,3 +65,7 @@ Route::group(['namespace' => 'User' , 'as' => 'user.'], function () {
     })->name('dl_jpeg');
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
