@@ -17,6 +17,7 @@ Route::group(['namespace' => 'User' , 'as' => 'user.'], function () {
     Route::resource('/request', 'RequestController');
     Route::resource('/request_receive', 'RequestReceiveController');
     Route::resource('/user', 'UserController');
+    Route::resource('/db_user', 'DbUserController');
 
     Route::view('/response', 'user.response')->name('response.index');
 
