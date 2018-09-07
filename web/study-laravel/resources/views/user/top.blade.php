@@ -10,6 +10,7 @@
     <ul>
         <li><a href="{{ route('user.request.index') }}">リクエスト</a></li>
         <li><a href="{{ route('user.response.index') }}">レスポンス</a></li>
+        <li><a href="{{ route('user.session_request.index') }}">セッション</a></li>
     </ul>
 </div>
 @endsection
