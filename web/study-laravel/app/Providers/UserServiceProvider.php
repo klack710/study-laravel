@@ -4,10 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Models\User;
+use App\Observers\UserObserver;
 use App\Http\Controllers\User\UserController;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Models\User;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -18,7 +19,7 @@ class UserServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        User::observe(UserObserver::class);
     }
 
     /**
