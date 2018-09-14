@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\UserDeleted;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -25,5 +26,14 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    /**
+     * モデルのイベントマップ
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'deleted' => UserDeleted::class,
     ];
 }

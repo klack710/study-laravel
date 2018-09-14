@@ -235,28 +235,6 @@ class UserDbTest extends TestCase
         ];
     }
 
-
-    /**
-     * 悲観的ロックなので、二度目のselectで読み取れない?
-     *
-     * @expectedException
-     * @return void
-     */
-    public function testUserDb_sharedLock()
-    {
-        DB::transaction(function () {
-            $data = DB::table('users')->sharedLock()->get();
-            var_dump($data);
-
-            DB::table('users')
-                ->where('id', 1)
-                ->update(['name' => 'hogehoge']);
-
-            $test = DB::table('users')->get();
-            var_dump($test);
-        });
-        $actual = DB::table('users')->get();
-    }
 }
 
 class UserDbTestSeeder extends Seeder
