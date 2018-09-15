@@ -26,6 +26,7 @@ services:
     image: mysql:8.0.12
     volumes:
       - ./mysql:/var/lib/mysql
+      - ./mysql-conf.d:/etc/mysql/conf.d
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=study-laravel
