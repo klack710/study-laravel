@@ -32,3 +32,14 @@ services:
       - MYSQL_DATABASE=study-laravel
     ports:
       - 3306:3306
+
+  mailhog:
+    container_name: study-laravel_mailhog
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /tmp
+    volumes:
+      - .maildir:/tmp
