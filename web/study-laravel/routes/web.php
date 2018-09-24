@@ -70,6 +70,10 @@ Route::group(['namespace' => 'User' , 'as' => 'user.'], function () {
 
 });
 
+Route::group(['namespace' => 'Mail' , 'as' => 'mail.'], function () {
+    Route::get('/simple_mail', 'SimpleMailController@send_mail')->name('simple_mail');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
